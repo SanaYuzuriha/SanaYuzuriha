@@ -41,17 +41,50 @@
             border-bottom: 2px solid var(--border-color);
             position: sticky;
             top: 0;
-            padding: 18px 24px;
+            padding: 18px 24px 0 24px;
             text-align: center;
             z-index: 100;
         }
 
         header h1 {
-            margin: 0;
+            margin: 0 0 12px 0;
             font-size: 1.4rem;
             font-weight: 800;
             letter-spacing: 0.08em;
             color: #ff6f91;
+        }
+
+        /* タブナビゲーション */
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            max-width: 720px;
+            margin: 0 auto;
+        }
+
+        .tab-btn {
+            background: transparent;
+            border: none;
+            padding: 10px 24px;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            color: #8a7367;
+            cursor: pointer;
+            border-bottom: 3px solid transparent;
+            transition: all 0.2s ease;
+            text-decoration: none;
+        }
+
+        .tab-btn:hover {
+            color: var(--accent-hover);
+            text-decoration: none;
+        }
+
+        .tab-btn.active {
+            color: #ff6f91;
+            border-bottom: 3px solid #ff6f91;
         }
 
         .container {
@@ -114,11 +147,31 @@
             font-weight: 800;
             font-size: 1.2rem;
             color: #ff6f91;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .mail-link, .policy-link {
-            display: inline-block;
-            margin-top: 10px;
+        .badge-dev {
+            font-size: 0.75rem;
+            background-color: #ff7b9c;
+            color: white;
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+
+        .link-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .mail-link, .sns-link, .policy-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
             background-color: #fff0f3;
             color: #ff527b;
             padding: 10px 18px;
@@ -126,6 +179,33 @@
             font-weight: 700;
             border: 1px solid #ffd1dc;
             word-break: break-all;
+            text-decoration: none;
+        }
+
+        .mail-link:hover, .sns-link:hover, .policy-link:hover {
+            background-color: #ffe3e8;
+            color: #ff2a5f;
+            text-decoration: none;
+        }
+
+        /* ギャラリー用のスタイル */
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        .gallery-placeholder {
+            text-align: center;
+            padding: 50px 20px;
+        }
+
+        .gallery-placeholder p {
+            font-size: 1.1rem;
+            color: #8a7367;
+            font-weight: 700;
         }
 
         footer {
@@ -152,47 +232,96 @@
 
     <header>
         <h1>SANA YUZURIHA</h1>
+        <nav class="nav-tabs">
+            <button class="tab-btn active" onclick="switchTab('home')">ホーム</button>
+            <button class="tab-btn" onclick="switchTab('gallery')">ギャラリー</button>
+        </nav>
     </header>
 
     <div class="container">
-        <section class="hero">
-            <h2>iOS Application Development</h2>
-            <p>わくわくする楽しいアプリ体験をお届けします❕</p>
-        </section>
+        <!-- ホームタブのコンテンツ -->
+        <main id="home-content" class="tab-content active">
+            <section class="hero">
+                <h2>iOS Application Development</h2>
+                <p>わくわくする楽しいアプリ体験をお届けします❕</p>
+            </section>
 
-        <section class="card">
-            <h3> About</h3>
-            <p><strong>SANA YUZURIHA</strong> は、iOSアプリケーションの企画・開発・運営を行っている開発スタジオです❕ユーザーのみなさまに寄り添った、便利で可愛いアプリづくりを目指しています❕</p>
-        </section>
+            <section class="card">
+                <h3> About</h3>
+                <p><strong>SANA YUZURIHA</strong> は、iOSアプリケーションの企画・開発・運営を行っている開発スタジオです❕ユーザーのみなさまに寄り添った、便利で可愛いアプリづくりを目指しています❕</p>
+            </section>
 
-        <section class="card">
-            <h3> Products</h3>
-            <div class="app-item">
-                <div class="app-title">MeloVo（メロボ）</div>
-                <p>ボイス再生・音声コンテンツをたっぷり楽しむためのiOSアプリケーションです❕</p>
-            </div>
-        </section>
+            <section class="card">
+                <h3> Products</h3>
+                <div class="app-item">
+                    <div class="app-title">MeloVo（メロボ）</div>
+                    <p>ボイス再生・音声コンテンツをたっぷり楽しむためのiOSアプリケーションです❕</p>
+                </div>
+                <div class="app-item">
+                    <div class="app-title">
+                        Meloime（メロイム）
+                        <span class="badge-dev">開発中</span>
+                    </div>
+                    <p>現在鋭意開発中の新しいiOSアプリケーションです❕公開をお楽しみに❕</p>
+                </div>
+            </section>
 
-        <section class="card">
-            <h3> Support & Contact</h3>
-            <p>アプリに関するお問い合わせ、不具合のご報告、その他ご意見やメッセージは以下のメールアドレスまでお願いいたします❕</p>
-            <p>
-                <a class="mail-link" href="mailto:info@sanayuzuriha.com">✉️ info@sanayuzuriha.com</a>
-            </p>
-        </section>
+            <section class="card">
+                <h3> Support & Contact</h3>
+                <p>アプリに関するお問い合わせ、不具合のご報告、その他ご意見やメッセージは以下のメールアドレスやSNSよりお願いいたします❕</p>
+                <div class="link-group">
+                    <a class="mail-link" href="mailto:info@sanayuzuriha.com">✉️ info@sanayuzuriha.com</a>
+                    <a class="sns-link" href="https://x.com/Yuzuriha_Sana" target="_blank" rel="noopener noreferrer">𝕏 @Yuzuriha_Sana</a>
+                    <a class="sns-link" href="https://www.pixiv.net/users/124393435/artworks" target="_blank" rel="noopener noreferrer">🎨 pixiv</a>
+                </div>
+            </section>
 
-        <section class="card">
-            <h3> Privacy Policy</h3>
-            <p>当組織が提供するアプリケーションにおける個人情報の取り扱いについては、以下のページをご確認ください❕</p>
-            <p style="margin-top: 15px;">
-                <a class="policy-link" href="https://sites.google.com/view/sanayuzuriha-privacy/ホーム" target="_blank" rel="noopener noreferrer">👉 プライバシーポリシーを見る</a>
-            </p>
-        </section>
+            <section class="card">
+                <h3> Privacy Policy</h3>
+                <p>当組織が提供するアプリケーションにおける個人情報の取り扱いについては、以下のページをご確認ください❕</p>
+                <p style="margin-top: 15px;">
+                    <a class="policy-link" href="https://sites.google.com/view/sanayuzuriha-privacy/ホーム" target="_blank" rel="noopener noreferrer">👉 プライバシーポリシーを見る</a>
+                </p>
+            </section>
+        </main>
+
+        <!-- ギャラリータブのコンテンツ -->
+        <main id="gallery-content" class="tab-content">
+            <section class="hero">
+                <h2>Gallery</h2>
+                <p>描いたイラスト作品を公開予定です❕</p>
+            </section>
+
+            <section class="card gallery-placeholder">
+                <h3>🎨 イラストギャラリー</h3>
+                <p>ただいま公開に向けて準備・調整中です❕<br>公開まで今しばらくお待ちください✨</p>
+            </section>
+        </main>
     </div>
 
     <footer>
         <p>&copy; 2026 SANA YUZURIHA. All rights reserved.</p>
     </footer>
 
+    <script>
+        function switchTab(tabName) {
+            // すべてのコンテンツを非表示
+            document.getElementById('home-content').classList.remove('active');
+            document.getElementById('gallery-content').classList.remove('active');
+            
+            // すべてのタブボタンのアクティブ状態を解除
+            const buttons = document.querySelectorAll('.tab-btn');
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            // 選択されたタブとコンテンツをアクティブ化
+            if (tabName === 'home') {
+                document.getElementById('home-content').classList.add('active');
+                buttons[0].classList.add('active');
+            } else if (tabName === 'gallery') {
+                document.getElementById('gallery-content').classList.add('active');
+                buttons[1].classList.add('active');
+            }
+        }
+    </script>
 </body>
 </html>
